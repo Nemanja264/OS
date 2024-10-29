@@ -3,6 +3,7 @@
 direktorijum=$1
 find $direktorijum maxdepth 1 -type f -size +0c | wc -l  -- u direktorijumu koji se zadaje kao ulazni argument odredjuje broj datoteka čija je veličina veda od 0B. 
 
+-----------
 11.
 #!/bin/bash
 
@@ -16,6 +17,7 @@ for j in {11..20}; do
     sleep 0.1
 done & 
 
+------------
 8.
 #!/bin/bash
 
@@ -29,4 +31,19 @@ if [ ! -f "$filename" ]; then
 fi
 
 sed -n "${line1},${line2}p" "filename"
+
+--------
+10.
+#!/bin/bash
+
+path=$1
+string=$2
+
+for file in $(grep -rl "$string" "$path"); do
+    echo "Datoteka $file sadrzi string $string"
+done
+
+--------
+6.
+find / -type f -name "*$1*" -size 0c 2>/dev/null -- 2>/dev/null da ne prikazuje datoteke gde je permission denied
 
