@@ -67,8 +67,29 @@ done
 
 ---------
 
+3.
+#!/bin/bash
 
+>"spoj.dat"
 
+echo "Unosite nazive datoteke, za prekid unesite 'KRAJ'"
+
+while true; do
+    read -p "Naziv dokumenta: " input_file
+
+    if [ "$input_file" = "KRAJ" ]; then
+        break
+    fi
+    
+    if [ -f $input_file ]; then
+        cat "$input_file" >> "spoj.dat"
+        echo "Concatenate done!"
+    fi
+
+    echo
+    echo "Sadrzaj Filea nakon spajanja:"
+    cat "spoj.dat"
+done
 
 
 
