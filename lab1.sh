@@ -46,4 +46,31 @@ done
 --------
 6.
 find / -type f -name "*$1*" -size 0c 2>/dev/null -- 2>/dev/null da ne prikazuje datoteke gde je permission denied
+-------------
+
+7.
+#1/bin/bash
+
+dir=$1
+newdir="$dir/KOPIJA"
+if [ -d "$newdir" ]; then
+    echo "Directory already exists!"
+else                                            ------ sve ovo se moze zameniti sa mkdir -p "$newdir"
+    mkdir "$newdir"
+fi
+
+for file in "$dir"/*.c; do
+    if { -f "$file" ]; then
+        cp "$file" "$newdir/$(basename "file").bak"
+        fi
+done
+
+---------
+
+
+
+
+
+
+
 
