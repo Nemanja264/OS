@@ -1,4 +1,14 @@
+1.
+#!/bin/bash
 
+passed=$1
+if [ -f "${passed}" ]; then
+    cat $passed;
+elif [ -d "${passed}" ]; then
+    cd $passed; ls;
+else
+    echo "Nije ni jedno ni drugo";
+fi
 -------------
 3.
 #!/bin/bash
