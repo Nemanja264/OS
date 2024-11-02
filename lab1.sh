@@ -35,6 +35,28 @@ while true; do
 done
 
 --------
+4.
+#!/bin/bash
+
+if [ $(( "$#" % 2 )) -ne 0 ]; then
+    echo "Number of arguments is not even!"
+    exit 1
+fi
+
+for ((i=1; i<="$#"; i+=2)) do
+    source_file="${!i}"
+    next=$((i+1))
+    dest_file="${!next}"
+
+    if [ -f "$source_file" ]; then
+        cp "$source_file" "$dest_file"
+        echo "$source_file copied to $dest_file"
+    else
+        "$source_file not valid!"
+    fi
+done
+
+--------
 5.
 #!/bin/bash
 
