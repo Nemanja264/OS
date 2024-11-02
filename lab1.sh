@@ -10,6 +10,36 @@ else
     echo "Nije ni jedno ni drugo";
 fi
 -------------
+2.
+#!/bin/bash
+
+file=$1
+
+if [ ! -f "$file ]; then
+    echo "$file not valid!"
+    exit 1
+fi
+
+case "$file" in
+    *.c)
+        gcc "$file" -o "${file%.c}.out"  -- %.c removing sufix .c
+        if [ $? -eq 0 ]; then
+            echo "Compiled '$file' successfully."
+        else
+            echo "Failed to compile '$file'."
+        fi
+        ;;  # End of the *.c case block
+    *.h)
+        echo "Displaying contents of '$file':"
+        cat "$file"
+        ;;  # End of the *.h case block
+    *)
+        echo "'$file' is not a .c or .h file. Deleting it."
+        rm "$file"
+        ;;  # End of the default case block
+esac
+
+-------------
 3.
 #!/bin/bash
 
