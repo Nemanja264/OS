@@ -7,7 +7,7 @@ char* buf1 = NULL;
 int i;
 FILE* f1;
 
-f1 =fopen("/proc/devices","r");
+f1 = fopen("/proc/devices","r");
 
 if(!fl)
 {
