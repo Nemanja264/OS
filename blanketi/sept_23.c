@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <sys/types.h>
 
 sem_t upis, sum;
 #define N 10
