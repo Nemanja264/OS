@@ -34,7 +34,7 @@ int main()
         int i = 0;
         while(1)
         {
-            if(msgrcv(qid, &buff, sizeof(buff.mnum), 0, 0) < 0)
+            if(msgrcv(qid, &buff, sizeof(buff.mnum), 1, 0) < 0)
             {
                 perror("Msgrcv");
                 exit(1);
@@ -44,22 +44,23 @@ int main()
             if(buff.mnum == 0)
             {
                 printf("Primljeno je %d brojeva\n", i-1);
-                exit(0);
+                break;
             }
 
             char ascii = (char) buff.mnum;
 
-            printf("%d = %c", buff.mnum, ascii);
+            printf("%d = %c\n", buff.mnum, ascii);
         }
     }
     else
     {
         do
         {
-            printf("Unesi broj [0-127], 0 for termination:");
+            sleep(2); // ubacen radi preglednijeg unosa
+            printf("Unesi broj [0-127], 0 for termination:\n");
             scanf("%d", &buff.mnum);
 
-            buff.mtype = 0;
+            buff.mtype = 1;
 
             if(buff.mnum < 128)
             {
