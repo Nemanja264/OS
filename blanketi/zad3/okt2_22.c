@@ -8,7 +8,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
-#define KEY 10302
+#define KEY 10304
 #define LEN 255
 
 struct msgbuf
@@ -86,6 +86,8 @@ int main()
                 int cifra;
                 printf("Unesi cifru:\n");
                 scanf("%d", &cifra);
+                getchar();
+
                 if(cifra != 1 && cifra != 2)
                 {
                     strcpy(buff.mtext, "EXIT");
@@ -95,11 +97,13 @@ int main()
                     msgsnd(qid, &buff, LEN, 0);
                     break;
                 }
-                buff.mtype = cifra;
-                printf("Unesi string:\n");
-                scanf("%s", buff.mtext);
+                buff.mtype = (long)cifra;
 
-                if(msgsnd(qid, &buff, strlen(buff.mtext)+1, 0) < 0)
+                printf("Unesi string:\n");
+                fgets(buff.mtext, LEN, stdin);
+                buff.mtext[strcspn(buff.mtext,"\n")] = '\0';
+
+                if(msgsnd(qid, &buff, LEN, 0) < 0)
                 {
                     perror("Msgsnd");
                     exit(1);
