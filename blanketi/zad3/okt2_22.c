@@ -46,7 +46,7 @@ int main()
                 break;
             }
 
-            printf("Second process: %s, length %d", buff.mtext, (int)strlen(buff.mtext));
+            printf("Second process: %s, length %d\n", buff.mtext, (int)strlen(buff.mtext));
         }
     }
     else
@@ -76,13 +76,15 @@ int main()
                 for(int i = 0; i<strlen(buff.mtext); i++)
                     buff.mtext[i] = toupper(buff.mtext[i]);
 
-                printf("Third process: %s", buff.mtext);
+                printf("Third process: %s\n", buff.mtext);
             }
         }
         else
         {
             while(1)
             {
+                sleep(2); // radi preglednijeg unosa
+
                 int cifra;
                 printf("Unesi cifru:\n");
                 scanf("%d", &cifra);
@@ -97,20 +99,19 @@ int main()
                     msgsnd(qid, &buff, LEN, 0);
                     break;
                 }
-                buff.mtype = (long)cifra;
+                buff.mtype = cifra;
 
                 printf("Unesi string:\n");
                 fgets(buff.mtext, LEN, stdin);
                 buff.mtext[strcspn(buff.mtext,"\n")] = '\0';
 
-                if(msgsnd(qid, &buff, LEN, 0) < 0)
+                if(msgsnd(qid, &buff, strlen(buff.mtext)+1, 0) < 0)
                 {
                     perror("Msgsnd");
                     exit(1);
                 }
-
-                sleep(5);
             }
+
             wait(NULL);
             wait(NULL);
             msgctl(qid, IPC_RMID, NULL);
