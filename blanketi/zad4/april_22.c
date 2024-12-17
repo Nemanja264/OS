@@ -26,7 +26,7 @@ void find_similar(char* path1, char* path2)
         if(strcmp(entry1->d_name, ".") == 0 || strcmp(entry1->d_name, "..") == 0)
             continue;
         
-        snprintf(fullPath1, sizeof(fullPath1), "%s%s", path1, entry1->d_name);
+        snprintf(fullPath1, sizeof(fullPath1), "%s/%s", path1, entry1->d_name);
 
         if(stat(fullPath1, &file_stat1) == -1)
             continue;
