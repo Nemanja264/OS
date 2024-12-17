@@ -36,7 +36,7 @@ void maxFile(char* path, int depth, struct largest_file* lf)
         if(strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name,"..") == 0)
             continue;
 
-        snprintf(fullPath, sizeof(fullPath), "%s%s", path, entry->d_name);
+        snprintf(fullPath, sizeof(fullPath), "%s/%s", path, entry->d_name);
 
         if(stat(fullPath, &file_stat) == -1)
             continue;
