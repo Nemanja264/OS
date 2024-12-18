@@ -26,7 +26,7 @@ void print_files(struct bigFiles bf[], int n)
     {
         printf("File path: %s\n", bf[i].path);
         printf("File name: %s\n", bf[i].name);
-        printf("File size: %d\n\n", bf[i].size);
+        printf("File size: %.2f KB\n\n", bf[i].size/1024.0);
     }
 }
 
@@ -84,7 +84,7 @@ void moreThan100Kb(char* path)
             }
         }
 
-        if(S_ISDIR(file_stat.st_size))
+        if(S_ISDIR(file_stat.st_mode))
             moreThan100Kb(fullPath);
         
     }
