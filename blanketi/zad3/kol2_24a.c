@@ -99,10 +99,12 @@ int main(int argc, char* argv[])
 
     strcpy(buff.mtext, "KRAJ");
     buff.mtype = 1;
-    msgsnd(qid, &buff, sizeof(buff.mtext), 0);
+    msgsnd(qid, &buff, LEN, 0);
     buff.mtype = 2;
-    msgsnd(qid, &buff, sizeof(buff.mtext), 0);
+    msgsnd(qid, &buff, LEN, 0);
 
+    wait(NULL);
+    wait(NULL);
     msgctl(qid, IPC_RMID, NULL);
     return 0;
 }
