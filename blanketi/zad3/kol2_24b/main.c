@@ -108,6 +108,7 @@ int main()
         printf("Sume su jednake\n");
 
     wait(NULL);
+    wait(NULL);
     msgctl(qid, IPC_RMID, NULL);
     return 0;
 }
