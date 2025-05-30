@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
             printf("%s", sh_mem);
             sem_signal(semid, parent);
 
-            if(strcmp(sh_mem, "END") == 0)
+            if(strcmp(sh_mem, "END\n") == 0)
                 break;
         }
 
@@ -106,10 +106,9 @@ int main(int argc, char* argv[])
             sem_wait(semid, parent);
         }
         fclose(f);
-        sh_mem = "END";
+        strncpy(sh_mem, "END\n", SHM_SIZE);
 
         sem_signal(semid, child);
-        sem_wait(semid, parent);
         wait(NULL);
         shmdt(sh_mem);
         shmctl(shmid, IPC_RMID, NULL);
