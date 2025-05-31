@@ -6,7 +6,6 @@
 #include <sys/shm.h>
 #include <sys/sem.h>
 #include <sys/wait.h>
-#include <stdbool.h>
 
 #define KEY 10110
 #define SHM_SIZE 256
